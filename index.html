@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐉 المترجم الأسطوري - جميع الإضافات</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ===== خلفية متحركة ===== -->
+    <div class="bg-layer">
+        <div class="stars"></div>
+        <div class="stars2"></div>
+        <div class="stars3"></div>
+        <div class="nebula"></div>
+    </div>
+
+    <!-- ===== تنين طائر ===== -->
+    <div class="dragon-container">
+        <div class="dragon">🐉</div>
+        <div class="dragon2">🐲</div>
+        <div class="dragon3">🐉</div>
+    </div>
+
+    <!-- ===== جزيئات متوهجة ===== -->
+    <div class="particles" id="particles"></div>
+
+    <!-- ===== التطبيق الرئيسي ===== -->
+    <div class="app">
+
+        <!-- ===== رأس خرافي ===== -->
+        <div class="header">
+            <div class="glow-ring"></div>
+            <div class="header-content">
+                <div class="crown">👑</div>
+                <h1>المترجم <span class="gold">الأسطوري</span></h1>
+                <p class="sub">⚡ ترجمة هجينة · Google + قاموس · تدوين (عكس) ⚡</p>
+                <div class="badges">
+                    <span class="badge">🆓 مجاني</span>
+                    <span class="badge">📁 رفع ملفات</span>
+                    <span class="badge">⚡ سريع</span>
+                    <span class="badge">🔥 دقيق</span>
+                    <span class="badge">📊 500K سطر</span>
+                    <span class="badge">🌐 Google</span>
+                    <span class="badge">📖 قاموس</span>
+                    <span class="badge">🔄 تدوين</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== خيارات الترجمة ===== -->
+        <div class="mode-selector">
+            <div class="mode-title">🎯 اختر وضع الترجمة:</div>
+            <div class="mode-buttons">
+                <button id="modeGoogle" class="mode-btn">
+                    <span class="mode-icon">🌐</span>
+                    Google Translate
+                    <span class="mode-badge">دقة عالية</span>
+                </button>
+                <button id="modeDictionary" class="mode-btn">
+                    <span class="mode-icon">📖</span>
+                    القاموس المحلي
+                    <span class="mode-badge">سريع</span>
+                </button>
+                <button id="modeHybrid" class="mode-btn active">
+                    <span class="mode-icon">⚡</span>
+                    هجين (Google + قاموس)
+                    <span class="mode-badge">الأفضل</span>
+                </button>
+                <button id="modeReverse" class="mode-btn">
+                    <span class="mode-icon">🔄</span>
+                    تدوين (عكس)
+                    <span class="mode-badge">بدون لمس الوسوم</span>
+                </button>
+            </div>
+            <div class="mode-info" id="modeInfo">
+                ⚡ يجمع بين Google Translate والقاموس المحلي. يترجم الأسماء الجديدة ويعمل بدون إنترنت كاحتياطي.
+            </div>
+        </div>
+
+        <!-- ===== منطقة رفع الملف ===== -->
+        <div class="upload-area" id="dropZone">
+            <div class="upload-content">
+                <span class="upload-icon">📁</span>
+                <span class="upload-title">اسحب ملفك هنا أو انقر للاختيار</span>
+                <span class="upload-hint">يدعم XML · JSON · HTML · TXT · SRT · CSV · JS · CSS · INI</span>
+                <input type="file" id="fileInput" class="file-input" accept=".xml,.json,.html,.htm,.css,.js,.csv,.srt,.txt,.md,.log,.ini,.conf,.py,.java,.c,.cpp,.sh,.bat">
+                <div class="upload-status" id="uploadStatus">
+                    <span class="status-icon">📂</span>
+                    <span class="status-text">لم يتم رفع ملف بعد</span>
+                </div>
+                <div class="file-info" id="fileInfo"></div>
+            </div>
+        </div>
+
+        <!-- ===== صندوق الترجمة ===== -->
+        <div class="box">
+
+            <!-- المصدر -->
+            <div class="input-group">
+                <div class="label-group">
+                    <span class="label-icon">📝</span>
+                    <span class="label-text">النص الإنجليزي</span>
+                    <span class="label-badge source">المصدر</span>
+                    <span class="label-counter" id="sourceCounter">0 أسطر · 0 أحرف</span>
+                </div>
+                <textarea id="input" placeholder="اكتب النص الإنجليزي هنا أو ارفع ملفاً...">Hello World, my name is Zargham from Xenon planet</textarea>
+                <div class="progress-bar" id="sourceProgress"><div class="progress-fill" style="width:0%"></div></div>
+            </div>
+
+            <!-- الأزرار -->
+            <div class="button-group">
+                <button id="translateBtn" class="btn-primary">
+                    <span class="btn-icon">🌍</span>
+                    ترجم الآن
+                    <span class="btn-shine"></span>
+                    <span class="btn-ripple"></span>
+                </button>
+                <button id="clearBtn" class="btn-secondary" title="مسح الكل">🗑️</button>
+                <button id="autoTranslateBtn" class="btn-auto" title="ترجمة تلقائية عند الكتابة">🔄 تلقائي</button>
+                <button id="reverseBtn" class="btn-reverse" title="عكس النص المترجم">🔄 تدوين</button>
+            </div>
+
+            <!-- النتيجة -->
+            <div class="output-group">
+                <div class="label-group">
+                    <span class="label-icon">✅</span>
+                    <span class="label-text">الترجمة العربية</span>
+                    <span class="label-badge result">النتيجة</span>
+                    <span class="label-counter" id="resultCounter">0 أسطر · 0 أحرف</span>
+                </div>
+                <textarea id="output" placeholder="الترجمة ستظهر هنا..." readonly></textarea>
+                <div class="progress-bar" id="resultProgress"><div class="progress-fill" style="width:0%"></div></div>
+            </div>
+
+            <!-- أزرار إضافية -->
+            <div class="action-group">
+                <button id="copyBtn" class="action-btn">📋 نسخ</button>
+                <button id="swapBtn" class="action-btn">🔄 تبديل</button>
+                <button id="downloadBtn" class="action-btn">💾 تحميل</button>
+                <button id="clearResultBtn" class="action-btn danger">🗑️ مسح النتيجة</button>
+                <button id="speakBtn" class="action-btn">🔊 استماع</button>
+            </div>
+        </div>
+
+        <!-- ===== حالة الترجمة ===== -->
+        <div class="status-container">
+            <div class="status" id="status">
+                <span class="status-dot"></span>
+                <span class="status-text">جاهز للترجمة (وضع هجين)</span>
+                <span class="status-time" id="statusTime"></span>
+            </div>
+        </div>
+
+        <!-- ===== أمثلة سريعة ===== -->
+        <div class="examples">
+            <span class="examples-title">📌 ترجم بسرعة:</span>
+            <button class="ex" data-text="Hello World">مرحباً بالعالم</button>
+            <button class="ex" data-text="Good morning">صباح الخير</button>
+            <button class="ex" data-text="How are you">كيف حالك</button>
+            <button class="ex" data-text="I love you">أحبك</button>
+            <button class="ex" data-text="Good luck">حظاً سعيداً</button>
+            <button class="ex" data-text="Peace be upon you">السلام عليكم</button>
+            <button class="ex" data-text="Cruella">كرويلا</button>
+            <button class="ex" data-text="Zargham">زرغام</button>
+            <button class="ex" data-text="Xenon">زينون</button>
+        </div>
+
+        <!-- ===== إحصائيات ===== -->
+        <div class="stats">
+            <div class="stat-item">
+                <span class="stat-icon">📊</span>
+                <span class="stat-label">الحد الأقصى:</span>
+                <span class="stat-value">500,000 سطر</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-icon">⚡</span>
+                <span class="stat-label">سرعة الترجمة:</span>
+                <span class="stat-value" id="speedDisplay">~0 حرف/دقيقة</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-icon">🆓</span>
+                <span class="stat-label">التكلفة:</span>
+                <span class="stat-value">مجاني 100%</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-icon">⏱️</span>
+                <span class="stat-label">وقت الترجمة:</span>
+                <span class="stat-value" id="timeDisplay">0 ثانية</span>
+            </div>
+        </div>
+
+        <!-- ===== قسم الشكر الخرافي ===== -->
+        <div class="thanks-card">
+            <div class="thanks-glow"></div>
+            <div class="thanks-header">
+                <span class="thanks-icon">🐉</span>
+                <span class="thanks-title">كلمة شكر وتقدير</span>
+                <span class="thanks-icon">👑</span>
+            </div>
+            <div class="thanks-body">
+                <p class="thanks-line">
+                    <span class="fire">🔥</span>
+                    شكر خاص لكل <strong class="highlight">مُعرب ومُعربة</strong>
+                    <span class="fire">🔥</span>
+                </p>
+                <p class="thanks-line">🎯 هذا التطبيق <strong class="gold-text">مجاني 100%</strong> لخدمة المُعربين</p>
+                <p class="thanks-line">🐉 تم إنشاؤه من طرف <strong class="dragon-name">King of Dragons</strong></p>
+                <div class="thanks-divider">✦ ✦ ✦</div>
+                <p class="thanks-line small">🙏 جزيل الشكر لكل من ساهم في إثراء المحتوى العربي</p>
+                <p class="thanks-line small">📊 يدعم التطبيق ترجمة <strong>500,000 سطر</strong> في المرة الواحدة</p>
+                <p class="thanks-line small">⚡ وضع هجين: Google + قاموس · دقة عالية</p>
+                <p class="thanks-line small">🔄 خاصية التدوين (عكس النصوص) بدون لمس الوسوم</p>
+            </div>
+            <div class="thanks-footer">
+                <span class="heart-pulse">❤️</span>
+                معاً نصنع محتوى عربياً أفضل
+                <span class="heart-pulse">❤️</span>
+            </div>
+        </div>
+
+        <!-- ===== تذييل ===== -->
+        <div class="footer">
+            <span>🔒 مجاني 100%</span>
+            <span class="footer-divider">|</span>
+            <span>📁 رفع الملفات</span>
+            <span class="footer-divider">|</span>
+            <span>⚡ وضع هجين</span>
+            <span class="footer-divider">|</span>
+            <span>📊 500,000 سطر</span>
+            <span class="footer-divider">|</span>
+            <span>🌐 Google + قاموس</span>
+            <span class="footer-divider">|</span>
+            <span>🔄 تدوين</span>
+            <span class="footer-divider">|</span>
+            <span>🐉 v8.0</span>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
